@@ -1,0 +1,368 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pontos de Doação Comunitária</title>
+  <!-- Leaflet CSS e JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- CSS Principal -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header com navegação principal -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h1>Doação Comunitária</h1>
+        </div>
+        <nav class="main-nav">
+          <button class="nav-btn active" data-view="inicio">
+            <i class="fas fa-home"></i>
+            <span>Início</span>
+          </button>
+          <button class="nav-btn" data-view="mapa">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>Mapa</span>
+          </button>
+          <button class="nav-btn" data-view="lista">
+            <i class="fas fa-list"></i>
+            <span>Lista</span>
+          </button>
+          <button class="nav-btn" data-view="estatisticas">
+            <i class="fas fa-chart-bar"></i>
+            <span>Estatísticas</span>
+          </button>
+        </nav>
+        <div class="header-actions">
+          <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button id="add-point-btn" class="btn-primary">
+            <i class="fas fa-plus"></i>
+            Adicionar Ponto
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Barra de Pesquisa Fixa -->
+      <div class="search-bar-fixed">
+        <div class="search-container">
+          <div class="search-input-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Buscar por cidade, nome ou endereço...">
+          </div>
+          <button class="filter-toggle">
+            <i class="fas fa-filter"></i>
+            Filtros
+            <span class="filter-count">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filtros Expansíveis -->
+      <div class="filters-expandable">
+        <div class="filter-container">
+          <div class="filter-group">
+            <h3>Tipos de Doação</h3>
+            <div class="filter-buttons">
+              <button class="filter-btn active" data-filter="todos">
+                <i class="fas fa-th-large"></i> Todos
+              </button>
+              <button class="filter-btn" data-filter="Roupas">
+                <i class="fas fa-tshirt"></i> Roupas
+              </button>
+              <button class="filter-btn" data-filter="Alimentos">
+                <i class="fas fa-utensils"></i> Alimentos
+              </button>
+              <button class="filter-btn" data-filter="Móveis">
+                <i class="fas fa-couch"></i> Móveis
+              </button>
+              <button class="filter-btn" data-filter="Eletrônicos">
+                <i class="fas fa-laptop"></i> Eletrônicos
+              </button>
+              <button class="filter-btn" data-filter="Brinquedos">
+                <i class="fas fa-gamepad"></i> Brinquedos
+              </button>
+            </div>
+          </div>
+          <div class="filter-group">
+            <h3>Ordenar por</h3>
+            <div class="sort-buttons">
+              <button class="sort-btn active" data-sort="relevancia">
+                <i class="fas fa-star"></i> Relevância
+              </button>
+              <button class="sort-btn" data-sort="distancia">
+                <i class="fas fa-location-arrow"></i> Distância
+              </button>
+              <button class="sort-btn" data-sort="recentes">
+                <i class="fas fa-clock"></i> Mais Recentes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visualizações -->
+      <div class="view-container">
+        <!-- Vista Inicial -->
+        <div id="inicio-view" class="view active">
+          <div class="inicio-container">
+            <section class="hero-section">
+              <div class="hero-content">
+                <h1>Bem-vindo à Plataforma de Doação Comunitária</h1>
+                <p>Conectando doadores e pessoas necessitadas em sua comunidade</p>
+              </div>
+            </section>
+
+            <section class="features-section">
+              <h2>Como Funciona</h2>
+              <div class="features-grid">
+                <div class="feature-card">
+                  <i class="fas fa-search"></i>
+                  <h3>Encontre Pontos de Doação</h3>
+                  <p>Localize facilmente pontos de doação próximos a você através do mapa interativo ou lista detalhada.</p>
+                </div>
+                <div class="feature-card">
+                  <i class="fas fa-hand-holding-heart"></i>
+                  <h3>Faça Doações</h3>
+                  <p>Contribua com itens necessários como roupas, alimentos, móveis e mais para ajudar sua comunidade.</p>
+                </div>
+                <div class="feature-card">
+                  <i class="fas fa-users"></i>
+                  <h3>Impacto Social</h3>
+                  <p>Acompanhe estatísticas e veja o impacto real das doações na vida das pessoas.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="stats-highlight">
+              <h2>Nosso Impacto</h2>
+              <div class="stats-grid">
+                <div class="stat-highlight-card">
+                  <div class="stat-number" id="total-pontos-inicio">0</div>
+                  <p>Pontos de Doação</p>
+                </div>
+                <div class="stat-highlight-card">
+                  <div class="stat-number" id="total-cidades-inicio">0</div>
+                  <p>Cidades Atendidas</p>
+                </div>
+                <div class="stat-highlight-card">
+                  <div class="stat-number" id="total-doacoes-inicio">0</div>
+                  <p>Tipos de Doações</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="cta-section">
+              <h2>Faça a Diferença</h2>
+              <p>Comece agora mesmo a contribuir com sua comunidade</p>
+              <div class="cta-buttons">
+                <button class="btn-primary" onclick="trocarVisualizacao('mapa')">
+                  <i class="fas fa-map-marked-alt"></i>
+                  Explorar Mapa
+                </button>
+                <button class="btn-secondary" onclick="trocarVisualizacao('lista')">
+                  <i class="fas fa-list"></i>
+                  Ver Lista
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Vista de Mapa -->
+        <div id="mapa-view" class="view active">
+          <div id="map" class="map-container"></div>
+          <div class="map-overlay">
+            <div class="map-legend">
+              <h4>Legenda</h4>
+              <div class="legend-item">
+                <span class="legend-dot roupas"></span> Roupas
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot alimentos"></span> Alimentos
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot moveis"></span> Móveis
+              </div>
+              <!-- ... outros itens da legenda ... -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Vista de Lista -->
+        <div id="lista-view" class="view">
+          <!-- Estatísticas Rápidas -->
+          <section class="quick-stats">
+            <div class="stat-card">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="stat-info">
+                <span id="total-pontos">0</span>
+                <p>Pontos de Doação</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-city"></i>
+              <div class="stat-info">
+                <span id="total-cidades">0</span>
+                <p>Cidades Atendidas</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-box-open"></i>
+              <div class="stat-info">
+                <span id="total-doacoes">0</span>
+                <p>Tipos de Doações</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Lista de Resultados -->
+          <div class="resultado-container">
+            <!-- Cards serão inseridos dinamicamente aqui -->
+          </div>
+        </div>
+
+        <!-- Vista de Estatísticas -->
+        <div id="estatisticas-view" class="view">
+          <div class="stats-dashboard">
+            <div class="stats-card">
+              <h3>Doações por Categoria</h3>
+              <canvas id="doacoesPorCategoria"></canvas>
+            </div>
+            <div class="stats-card">
+              <h3>Pontos por Cidade</h3>
+              <canvas id="pontosPorCidade"></canvas>
+            </div>
+            <div class="stats-card">
+              <h3>Itens Mais Urgentes</h3>
+              <canvas id="itensMaisUrgentes"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading Overlay -->
+      <div id="loading-overlay" class="loading-overlay">
+        <div class="loader"></div>
+        <p>Carregando...</p>
+      </div>
+
+      <!-- Notificação Toast -->
+      <div id="notification-toast" class="notification-toast">
+        <i class="notification-icon"></i>
+        <span class="notification-message"></span>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+        <i class="fas fa-heart"></i>
+        Apoie sua comunidade - Faça uma doação hoje!
+      </p>
+    </footer>
+
+    <!-- Modal Form -->
+    <div class="form-container">
+      <div class="form-card">
+        <h2>
+          <i class="fas fa-plus-circle"></i>
+          Adicionar Ponto de Doação
+        </h2>
+        <form id="donation-form">
+          <div class="form-group">
+            <label for="nome">Nome do Local</label>
+            <input type="text" id="nome" name="nome" required>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cidade">Cidade</label>
+              <input type="text" id="cidade" name="cidade" required>
+            </div>
+            <div class="form-group">
+              <label for="endereco">Endereço</label>
+              <input type="text" id="endereco" name="endereco" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="horario-abertura">Horário de Abertura</label>
+              <input type="time" id="horario-abertura" name="horario-abertura">
+            </div>
+            <div class="form-group">
+              <label for="horario-fechamento">Horário de Fechamento</label>
+              <input type="time" id="horario-fechamento" name="horario-fechamento">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone">
+          </div>
+
+          <div class="form-group">
+            <label>Tipos de Doação Aceitos</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="tipos-doacao" value="Roupas">
+                <i class="fas fa-tshirt"></i> Roupas
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="tipos-doacao" value="Alimentos">
+                <i class="fas fa-utensils"></i> Alimentos
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="tipos-doacao" value="Móveis">
+                <i class="fas fa-couch"></i> Móveis
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="tipos-doacao" value="Eletrônicos">
+                <i class="fas fa-laptop"></i> Eletrônicos
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="tipos-doacao" value="Brinquedos">
+                <i class="fas fa-gamepad"></i> Brinquedos
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="itens-urgentes">Itens Urgentemente Necessários</label>
+            <input type="text" id="itens-urgentes" name="itens-urgentes" 
+                   placeholder="Separe os itens por vírgula">
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="cancel-form" class="btn-secondary">
+              <i class="fas fa-times"></i> Cancelar
+            </button>
+            <button type="submit" id="save-form" class="btn-primary">
+              <i class="fas fa-save"></i> Salvar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>
