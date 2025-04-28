@@ -1,0 +1,143 @@
+[
+  {
+    "nome": "Centro de Doações São Francisco",
+    "cidade": "São Paulo",
+    "endereco": "Rua São Francisco, 123 - Centro",
+    "tipoDoacoes": [
+      "Alimentos",
+      "Roupas",
+      "Cobertores",
+      "Material Escolar"
+    ],
+    "itensUrgentes": [
+      "Alimentos não perecíveis",
+      "Roupas de inverno",
+      "Cobertores"
+    ],
+    "horario": "Segunda a Sexta, 9h às 17h",
+    "contato": "(11) 1234-5678"
+  },
+  {
+    "nome": "Abrigo Esperança",
+    "cidade": "Rio de Janeiro",
+    "endereco": "Av. da Esperança, 456 - Copacabana",
+    "tipoDoacoes": [
+      "Material de higiene",
+      "Fraldas",
+      "Alimentos",
+      "Brinquedos"
+    ],
+    "itensUrgentes": [
+      "Material de higiene",
+      "Fraldas",
+      "Leite em pó"
+    ],
+    "horario": "Segunda a Sábado, 8h às 18h",
+    "contato": "(21) 2345-6789"
+  },
+  {
+    "nome": "Casa de Acolhimento",
+    "cidade": "Belo Horizonte",
+    "endereco": "Rua das Flores, 789 - Savassi",
+    "tipoDoacoes": [
+      "Alimentos",
+      "Roupas",
+      "Calçados",
+      "Material de Limpeza"
+    ],
+    "itensUrgentes": [
+      "Alimentos",
+      "Roupas",
+      "Calçados"
+    ],
+    "horario": "Todos os dias, 9h às 20h",
+    "contato": "(31) 3456-7890"
+  },
+  {
+    "nome": "Instituto Solidário",
+    "cidade": "Curitiba",
+    "endereco": "Av. das Araucárias, 321 - Centro",
+    "tipoDoacoes": [
+      "Alimentos",
+      "Agasalhos",
+      "Material Escolar",
+      "Livros"
+    ],
+    "itensUrgentes": [
+      "Agasalhos",
+      "Cobertores",
+      "Alimentos não perecíveis"
+    ],
+    "horario": "Segunda a Sexta, 8h às 19h",
+    "contato": "(41) 4567-8901"
+  },
+  {
+    "nome": "Lar Amor e Paz",
+    "cidade": "Salvador",
+    "endereco": "Rua da Paz, 567 - Barra",
+    "tipoDoacoes": [
+      "Alimentos",
+      "Roupas",
+      "Brinquedos",
+      "Material de Higiene"
+    ],
+    "itensUrgentes": [
+      "Fraldas",
+      "Material de Higiene",
+      "Alimentos"
+    ],
+    "horario": "Segunda a Sábado, 7h às 17h",
+    "contato": "(71) 5678-9012"
+  },
+  {
+    "id": "m9uwqirtxfc5o0c8y59",
+    "nome": "eqwewq",
+    "cidade": "eqwewq",
+    "endereco": "321312312312",
+    "horarioAbertura": "03:21",
+    "horarioFechamento": "13:23",
+    "telefone": "312312",
+    "tipoDoacoes": [
+      "Roupas",
+      "Alimentos",
+      "Eletrônicos",
+      "Brinquedos"
+    ],
+    "itensUrgentes": [
+      "123123"
+    ],
+    "dataCriacao": "2025-04-24T05:13:41.513Z"
+  },
+  {
+    "id": "m9uwrv8hgl0fema759",
+    "nome": "eqwewqe",
+    "cidade": "eqw3",
+    "endereco": "eqw",
+    "horarioAbertura": "03:31",
+    "horarioFechamento": "23:12",
+    "telefone": "24999214290",
+    "tipoDoacoes": [
+      "Roupas"
+    ],
+    "itensUrgentes": [
+      "312312312"
+    ],
+    "dataCriacao": "2025-04-24T05:14:44.321Z"
+  },
+  {
+    "id": "m9vf6ckn722326fzcu4",
+    "nome": "qewqew",
+    "cidade": "wqewq",
+    "endereco": "ewqewqe",
+    "horarioAbertura": "12:01",
+    "horarioFechamento": "03:02",
+    "telefone": "312321",
+    "tipoDoacoes": [
+      "Roupas"
+    ],
+    "itensUrgentes": [
+      "eqweqw"
+    ],
+    "dataCriacao": "2025-04-24T13:49:53.063Z"
+  }
+]
