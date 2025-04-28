@@ -1,4 +1,4 @@
-# 🤝 API de Doação Comunitária
+# 🤝 API de Doação Comunitária Yourself
 
 ## 📋 Sobre o Projeto
 A API de Doação Comunitária é uma solução desenvolvida para facilitar a conexão entre doadores e pontos de doação em diferentes cidades. O sistema permite mapear, gerenciar e visualizar pontos de doação, tipos de itens necessários e estatísticas sobre o impacto das doações na comunidade.
