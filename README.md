@@ -159,8 +159,7 @@ Jair Filho - [LinkedIn](meu-linkedin) - meu.email@exemplo.com
 
 ## 🙏 Agradecimentos
 
-- Agradeça pessoas ou recursos que ajudaram
-- Liste inspirações
+
 - etc
 
 ---
