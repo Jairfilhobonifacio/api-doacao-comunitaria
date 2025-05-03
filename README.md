@@ -159,8 +159,9 @@ Jair Filho - [LinkedIn](meu-linkedin) - meu.email@exemplo.com
 
 ## 🙏 Agradecimentos
 
-
-- etc
+- Professor [Nome do Professor] pela orientação e avaliação do projeto
+- Comunidade de desenvolvedores por todo o suporte
+- Todos os contribuidores que ajudaram no desenvolvimento
 
 ---
-⌨️ com ❤️ por [SJair filho](https://github.com/seu-usuario) 😊 
+⌨️ com ❤️ por [Jair filho](https://github.com/seu-usuario) 😊 
