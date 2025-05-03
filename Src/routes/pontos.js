@@ -1,14 +1,24 @@
-import express from 'express';
-import { readFileSync, writeFileSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import PontoDoacaoController from '../controllers/PontoDoacaoController.js';
+/**
+ * Arquivo de rotas para os pontos de doação
+ * Define todas as rotas relacionadas à manipulação de pontos de doação
+ */
 
+// Importação das dependências necessárias
+import express from 'express';  // Framework web
+import { readFileSync, writeFileSync } from 'fs';  // Funções para manipulação de arquivos
+import { fileURLToPath } from 'url';  // Utilidade para ES Modules
+import { dirname, join } from 'path';  // Funções para manipulação de caminhos
+import PontoDoacaoController from '../controllers/PontoDoacaoController.js';  // Controlador dos pontos
+
+// Configuração do __dirname para ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const pontosFile = join(__dirname, '../data/pontos.json');
+const pontosFile = join(__dirname, '../data/pontos.json');  // Caminho do arquivo JSON com os dados
 
-// Função para ler pontos do arquivo
+/**
+ * Função para ler os pontos de doação do arquivo JSON
+ * @returns {Array} Lista de pontos de doação ou array vazio em caso de erro
+ */
 function lerPontos() {
   try {
     const data = readFileSync(pontosFile, 'utf-8');
@@ -19,7 +29,11 @@ function lerPontos() {
   }
 }
 
-// Função para salvar pontos no arquivo
+/**
+ * Função para salvar os pontos de doação no arquivo JSON
+ * @param {Array} pontos - Lista de pontos a serem salvos
+ * @returns {boolean} true se salvou com sucesso, false caso contrário
+ */
 function salvarPontos(pontos) {
   try {
     writeFileSync(pontosFile, JSON.stringify(pontos, null, 2));
@@ -30,27 +44,30 @@ function salvarPontos(pontos) {
   }
 }
 
+// Criação do router do Express
 const router = express.Router();
 
-// Listar todos os pontos
+// Definição das rotas da API
+
+// GET /api/pontos - Lista todos os pontos de doação
 router.get('/', PontoDoacaoController.listarTodos);
 
-// Buscar ponto por ID
+// GET /api/pontos/id/:id - Busca um ponto específico pelo ID
 router.get('/id/:id', PontoDoacaoController.buscarPorId);
 
-// Buscar pontos por cidade
+// GET /api/pontos/cidade/:nome - Busca pontos por cidade
 router.get('/cidade/:nome', PontoDoacaoController.buscarPorCidade);
 
-// Listar necessidades
+// GET /api/pontos/necessidades - Lista todas as necessidades dos pontos
 router.get('/necessidades', PontoDoacaoController.listarNecessidades);
 
-// Criar novo ponto
+// POST /api/pontos - Cria um novo ponto de doação
 router.post('/', PontoDoacaoController.criar);
 
-// Atualizar ponto
+// PUT /api/pontos/:id - Atualiza um ponto existente
 router.put('/:id', PontoDoacaoController.atualizar);
 
-// Excluir ponto
+// DELETE /api/pontos/:id - Remove um ponto de doação
 router.delete('/:id', PontoDoacaoController.excluir);
 
 export default router;

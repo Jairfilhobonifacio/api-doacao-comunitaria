@@ -1,6 +1,16 @@
+/**
+ * Controlador responsável por gerenciar as operações relacionadas aos pontos de doação
+ * Implementa os métodos que manipulam as requisições HTTP
+ */
 import PontoDoacao from '../models/PontoDoacao.js';
 
 class PontoDoacaoController {
+  /**
+   * Lista todos os pontos de doação
+   * @param {Object} req - Objeto da requisição
+   * @param {Object} res - Objeto da resposta
+   * @returns {Array} Lista de todos os pontos de doação
+   */
   static async listarTodos(req, res) {
     try {
       const pontos = PontoDoacao.listarTodos();
@@ -10,6 +20,12 @@ class PontoDoacaoController {
     }
   }
 
+  /**
+   * Busca um ponto de doação específico pelo ID
+   * @param {Object} req - Objeto da requisição (contém o ID nos parâmetros)
+   * @param {Object} res - Objeto da resposta
+   * @returns {Object} Ponto de doação encontrado ou erro 404
+   */
   static async buscarPorId(req, res) {
     try {
       const { id } = req.params;
@@ -25,6 +41,12 @@ class PontoDoacaoController {
     }
   }
 
+  /**
+   * Busca pontos de doação por cidade
+   * @param {Object} req - Objeto da requisição (contém o nome da cidade nos parâmetros)
+   * @param {Object} res - Objeto da resposta
+   * @returns {Array} Lista de pontos de doação da cidade
+   */
   static async buscarPorCidade(req, res) {
     try {
       const { nome } = req.params;
@@ -35,6 +57,12 @@ class PontoDoacaoController {
     }
   }
 
+  /**
+   * Lista todas as necessidades dos pontos de doação
+   * @param {Object} req - Objeto da requisição
+   * @param {Object} res - Objeto da resposta
+   * @returns {Array} Lista de necessidades
+   */
   static async listarNecessidades(req, res) {
     try {
       const necessidades = PontoDoacao.listarNecessidades();
@@ -44,6 +72,12 @@ class PontoDoacaoController {
     }
   }
 
+  /**
+   * Cria um novo ponto de doação
+   * @param {Object} req - Objeto da requisição (contém os dados do ponto no body)
+   * @param {Object} res - Objeto da resposta
+   * @returns {Object} Ponto de doação criado ou erro
+   */
   static async criar(req, res) {
     try {
       const novoPonto = PontoDoacao.criar(req.body);
@@ -56,6 +90,12 @@ class PontoDoacaoController {
     }
   }
 
+  /**
+   * Atualiza um ponto de doação existente
+   * @param {Object} req - Objeto da requisição (contém o ID nos parâmetros e dados no body)
+   * @param {Object} res - Objeto da resposta
+   * @returns {Object} Ponto de doação atualizado ou erro
+   */
   static async atualizar(req, res) {
     try {
       const { id } = req.params;
@@ -72,6 +112,12 @@ class PontoDoacaoController {
     }
   }
 
+  /**
+   * Exclui um ponto de doação
+   * @param {Object} req - Objeto da requisição (contém o ID nos parâmetros)
+   * @param {Object} res - Objeto da resposta
+   * @returns {void} Status 204 em caso de sucesso ou erro
+   */
   static async excluir(req, res) {
     try {
       const { id } = req.params;
