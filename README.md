@@ -155,7 +155,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👥 Autor
 
-Jair Filho - [LinkedIn](meu-linkedin) - meu.email@exemplo.com
+Jair Filho 
 
 ## 🙏 Agradecimentos
 
